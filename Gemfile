@@ -39,3 +39,4 @@ gem 'jquery-rails'
 
 gem 'figaro'
 gem 'omniauth'
+gem 'omniauth-twitter'
