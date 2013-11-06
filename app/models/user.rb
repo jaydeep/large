@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  
+  has_many :posts
 
   def self.from_omniauth(auth)
     where(auth.slice('provider', 'uid')).first || create_with_omniauth(auth)
