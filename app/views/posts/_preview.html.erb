@@ -1,4 +1,7 @@
 <div class="preview">
+  <%= p post %>
+  <%= p post.author %>
+  <%= p current_user %>
   <b><a href="<%= post_url(post.id) %>"><%= post.title %></a><b> by <%= post.author.name %>
   <br><em><%= post.subtitle %></em>
 </div>
