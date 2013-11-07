@@ -1,0 +1,10 @@
+<h1><%= @post.title %></h1> <br>
+by <em><%= @post.author.name %></em>
+
+<h2><%= @post.subtitle %></h2>
+
+<h4><%= @post.body %></h4>
+
+<% if @post.author.id == current_user.id %>
+  <%= link_to "Edit this post", edit_post_url(@post) %>
+<% end %>

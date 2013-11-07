@@ -1,0 +1,8 @@
+<h1> All the posts! </h1>
+
+<% @posts.each do|post| %>
+  <%= render :partial => "preview", :locals => { :post => post } %>
+  <br>
+<% end %>
+
+<%= link_to "Write a new post", new_post_url %>
