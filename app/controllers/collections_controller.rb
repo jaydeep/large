@@ -58,7 +58,9 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    @collection = Collection.find(params[:id]).destroy
+    @collection = Collection.find(params[:id])
+    @collection.posts = []
+    @collection.destroy
     redirect_to collections_url
   end
 

@@ -1,0 +1,17 @@
+<form 
+  name="remove-post-from-collection" 
+  action="<%= post_url(post.id) %>"
+  method="POST">
+
+  <input type="hidden" name="_method" value="PUT">
+
+  <input type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input type="hidden"
+    name="post[collection_id]"
+    value="">
+
+  <input type="submit" value="Remove from collection">
+</form>

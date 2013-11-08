@@ -7,4 +7,10 @@ by <em><%= @post.author.name %></em>
 
 <% if @post.author.id == current_user.id %>
   <%= link_to "Edit this post", edit_post_url(@post) %>
+  <%= button_to "Delete Post", post_url(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<% end %>
+
+<% unless @post.collection_id.nil? %>
+  <%= render "remove-post-from-collection", :post => @post %>
 <% end %>

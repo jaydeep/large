@@ -7,6 +7,9 @@
 <h2> Posts: </h2>
 <% @posts.each do |post| %>
   <%= render '/posts/preview', :post => post %>
+  <% if @collection.owner_id == current_user.id %>
+    <%= render '/posts/remove-post-from-collection', :post => post %>
+  <% end %>
   <br>
 <% end %>
 

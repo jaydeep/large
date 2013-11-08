@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id]).delete
     flash[:notice] = "#{@post.title} has been deleted."
-    redirect_to root_url #may want to change this to user home later
+    redirect_to posts_url #may want to change this to user home later
   end
 
 end

@@ -1,1 +1,1 @@
-<%= render :partial => "form", :locals => { :form_title => "Edit Collection", :form_type => "edit", :form_action_url => collection_url(@collection), :collection => @collection } %>
+<%= render :partial => "form", :locals => { :form_title => "Edit Collection", :form_type => "edit", :form_action_url => collection_url(@collection), :collection => @collection, :posts => @collection.posts } %>
