@@ -1,0 +1,8 @@
+<a href="<%= collection_url(collection) %>"><%= collection.name %></a>
+(<em><%= collection.num_posts %> posts </em>)
+<%=  "TODO images" %>
+<% unless collection.already_following?(current_user.id) %>
+  <%= button_to "Follow", collection_collection_follower_url(collection), method: :post %>
+<% else %>
+  <%= button_to "Unfollow", collection_collection_follower_url(collection), method: :delete  %>
+<% end %>

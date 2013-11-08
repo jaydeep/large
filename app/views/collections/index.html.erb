@@ -1,0 +1,8 @@
+<h1> All the Collections! </h1>
+
+<% @collections.each do |collection| %>
+  <%= render "preview", :collection => collection %>
+  <br>
+<% end %>
+
+<%= link_to "New Collection", new_collection_url %>

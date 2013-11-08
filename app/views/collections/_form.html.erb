@@ -1,0 +1,51 @@
+<%# TODO:implement placeholder text %>
+<h1><%= form_title %></h1>
+
+<form name="collection-form-<%= form_type %>" 
+  action="<%= form_action_url %>" 
+  method="POST">
+
+  <input type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <% if form_type == "edit" %>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+  <input type="text" 
+    name="collection[name]" 
+    placeholder="Name" 
+    value="<%= collection.name %>"/>
+  <br>
+
+  <input type="text" 
+    name="collection[description]" 
+    placeholder="Describe the collection" 
+    value="<%= collection.description %>"/>
+  <br>
+  
+  <!-- only check what was previously checked -->
+  <label for="invite_only">Invite Only</label>
+  <input type="radio" 
+    id="invite_only" 
+    name="collection[invite_only]" 
+    value="true"
+    <%= "checked" if collection.invite_only %>
+    >
+  <br>
+
+  <label for="anyone">Anyone Can Post!</label>
+  <input 
+    id="anyone"
+    type="radio" 
+    name="collection[invite_only]" 
+    value="false" 
+    <%= "checked" unless collection.invite_only %>>
+  <br>
+
+  <!-- ability to invite people via typeahead if it is invite only -->
+
+  <input type="submit">
+</form>
+

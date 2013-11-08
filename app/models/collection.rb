@@ -1,4 +1,5 @@
 class Collection < ActiveRecord::Base
+  attr_accessible :name, :description, :invite_only
   validates_presence_of :name, :description, :owner_id
   validates_inclusion_of :invite_only, :in => [true, false]
   validates_uniqueness_of :name
@@ -10,5 +11,13 @@ class Collection < ActiveRecord::Base
 
   def contribution_status
     invite_only ? "Invite Only" : "Public"
+  end
+
+  def num_posts
+    posts.count
+  end
+
+  def already_following?(user_id)
+    follower_ids.include?(user_id)
   end
 end

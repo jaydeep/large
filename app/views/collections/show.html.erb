@@ -1,0 +1,14 @@
+<h1><%= @collection.name %></h1>
+<% unless @collection.already_following?(current_user.id) %>
+  <%= button_to "Follow", collection_collection_follower_url(@collection), method: :post %>
+<% else %>
+  <%= button_to "Unfollow", collection_collection_follower_url(@collection), method: :delete  %>
+<% end %>
+<h2> Posts: </h2>
+<% @posts.each do |post| %>
+  <%= render '/posts/preview', :post => post %>
+  <br>
+<% end %>
+
+
+<%= link_to "Edit this collection", edit_collection_url(@collection) %>

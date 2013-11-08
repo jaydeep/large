@@ -8,8 +8,8 @@
 </head>
 <body>
 <div id="container">
-  <%= link_to "Home", posts_url %>
-  
+  <%= link_to "Posts", posts_url %>
+  <%= link_to "Collections", collections_url %>
   <div id="user_nav"> 
     <% if current_user %>
       Welcome, <%= current_user.name %>!
