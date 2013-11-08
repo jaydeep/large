@@ -4,8 +4,8 @@ class CollectionInvitation < ActiveRecord::Base
   validates_presence_of :collection_id, :user_id
   validate :collection_is_invite_only
 
-  belongs_to :collection
-  belongs_to :user
+  belongs_to :collection, dependent: :destroy
+  belongs_to :user, dependent: :destroy
 
   def collection_is_invite_only
     unless Collection.find(collection_id).invite_only

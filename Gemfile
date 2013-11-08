@@ -7,6 +7,11 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 
+group :development do 
+  gem 'rails-pry'
+  gem 'pry-debugger'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

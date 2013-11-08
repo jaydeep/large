@@ -1,0 +1,11 @@
+<!-- This is added to ensure we can uncheck all options -->
+  <input type="hidden" name="invitations[user_ids][]" value="">
+<% users.each do |user| %>
+  <label for="<%= html_id %>"><%= user.name %></label>
+  <input 
+    type="checkbox"
+    id="<%= html_id %>"
+    name="invitation[user_ids][]" 
+    value="<%= user.id %>"
+    <%= "checked" if invite_ids.includes?(user.id) %>>
+<% end %>

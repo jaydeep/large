@@ -3,6 +3,6 @@ class CollectionFollower < ActiveRecord::Base
 
   validates_presence_of :collection_id, :follower_id
 
-  belongs_to :collection
-  belongs_to :follower, class_name: "User"
+  belongs_to :collection, dependent: :destroy
+  belongs_to :follower, class_name: "User", dependent: :destroy
 end

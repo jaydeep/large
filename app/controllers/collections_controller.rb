@@ -29,14 +29,29 @@ class CollectionsController < ApplicationController
 
   def edit
     @collection = Collection.find(params[:id])
+    @users = User.all
+    @invited_user_ids = @collection.invited_user_ids if @collection.invite_only
     render :edit
   end
 
   def update
-    @collection = Collection.find(params[:id])
-    if @collection.update_attributes(params[:collection])
+    begin
+      @collection = Collection.find(params[:id])
+      binding.pry
+      if @collection.invite_only && params[:invitations][:user_ids]
+        @collection.invited_user_ids = params[:invitations][:user_ids] 
+      end
+      @collection.assign_attributes(params[:collection])
+
+      
+      
+      @collection.transaction do
+        @collection.save!
+      end
+
       redirect_to collection_url(@collection)
-    else
+    
+    rescue ActiveRecord::RecordInvalid => invalid
       flash[:errors] = @collection.errors.full_messages
       render :edit
     end
