@@ -26,7 +26,8 @@ class Collection < ActiveRecord::Base
   end
 
   def self.open_collections(user)
-    # anyone || you have permission to post in the invite_only column
-    Collection.where("invite_only = ? OR id IN (?) ", false, user.invited_collection_ids )
+    # anyone || owner || you have permission to post in the invite_only column
+    Collection.where("invite_only = ? OR owner_id = ? OR id IN (?) ", 
+      false, user.id, user.invited_collection_ids )
   end
 end

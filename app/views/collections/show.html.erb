@@ -10,5 +10,6 @@
   <br>
 <% end %>
 
-
+<% if @collection.owner_id == current_user.id %>
 <%= link_to "Edit this collection", edit_collection_url(@collection) %>
+<% end %>
