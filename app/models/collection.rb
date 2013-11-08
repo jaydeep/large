@@ -6,8 +6,12 @@ class Collection < ActiveRecord::Base
 
   belongs_to :owner, class_name: "User"
   has_many :posts
+
   has_many :collection_followers
   has_many :followers, through: :collection_followers
+
+  has_many :collection_invitations
+  has_many :invited_users, through: :collection_invitations, source: :user
 
   def contribution_status
     invite_only ? "Invite Only" : "Public"
@@ -19,5 +23,10 @@ class Collection < ActiveRecord::Base
 
   def already_following?(user_id)
     follower_ids.include?(user_id)
+  end
+
+  def self.open_collections(user)
+    # anyone || you have permission to post in the invite_only column
+    Collection.where("invite_only = ? OR id IN (?) ", false, user.invited_collection_ids )
   end
 end

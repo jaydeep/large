@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @collections = Collection.open_collections(current_user)
     render :new
   end
 
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @collections = Collection.open_collections(current_user)
     render :edit
   end
 

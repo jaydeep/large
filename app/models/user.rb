@@ -6,7 +6,14 @@ class User < ActiveRecord::Base
   foreign_key: :owner_id
   
   has_many :collection_followers, foreign_key: :follower_id
-  has_many :followed_collections, through: :collection_followers, source: :collection
+  has_many :followed_collections, 
+    through: :collection_followers,
+    source: :collection
+
+  has_many :collection_invitations
+  has_many :invited_collections, 
+    through: :collection_invitations,
+    source: :collection
 
   def self.from_omniauth(auth)
     where(auth.slice('provider', 'uid')).first || create_with_omniauth(auth)
