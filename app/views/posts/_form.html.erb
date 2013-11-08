@@ -27,7 +27,7 @@
   
   <label for="collection">Collection</label>
   <select id="collection" name="post[collection_id]">
-    <option value="nil">No Collection</option>
+    <option value="">No Collection</option>
     <% collections.each do |collection| %>
       <option value="<%= collection.id %>"
         <%= "selected" if post.collection_id == collection.id %>
