@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   
   has_many :posts
+  has_many :owned_collections, 
+  class_name: "Collection", 
+  foreign_key: :owner_id
+
+  # has_many :followed_collections, through: 
 
   def self.from_omniauth(auth)
     where(auth.slice('provider', 'uid')).first || create_with_omniauth(auth)
@@ -15,4 +20,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  def collections
+    owned_collections# + followed_collections
+  end
 end

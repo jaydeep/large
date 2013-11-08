@@ -11,15 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106233140) do
+ActiveRecord::Schema.define(:version => 20131108005331) do
+
+  create_table "collections", :force => true do |t|
+    t.string   "name",                           :null => false
+    t.text     "description",                    :null => false
+    t.integer  "owner_id",                       :null => false
+    t.boolean  "invite_only", :default => false, :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "collections", ["name"], :name => "index_collections_on_name", :unique => true
+  add_index "collections", ["owner_id"], :name => "index_collections_on_owner_id"
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "title",      :null => false
-    t.string   "subtitle",   :null => false
-    t.text     "body",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "title",         :null => false
+    t.string   "subtitle",      :null => false
+    t.text     "body",          :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "collection_id"
   end
 
   add_index "posts", ["title"], :name => "index_posts_on_title"
