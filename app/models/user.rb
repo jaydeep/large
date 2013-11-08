@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   has_many :owned_collections, 
   class_name: "Collection", 
   foreign_key: :owner_id
-
-  # has_many :followed_collections, through: 
+  
+  has_many :collection_followers, foreign_key: :follower_id
+  has_many :followed_collections, through: :collection_followers, source: :collection
 
   def self.from_omniauth(auth)
     where(auth.slice('provider', 'uid')).first || create_with_omniauth(auth)
@@ -21,6 +22,6 @@ class User < ActiveRecord::Base
   end
 
   def collections
-    owned_collections# + followed_collections
+    owned_collections + followed_collections
   end
 end

@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   #validate profanity in titles? 
   belongs_to :author, class_name: "User", foreign_key: :user_id,  dependent: :destroy
   belongs_to :collection
-
+  
   #TODO:has many comments
   #TODO:has many recommendors
 
