@@ -1,37 +1,38 @@
 class CollectionsController < ApplicationController
-
+  before_filter :require_logged_in_user!, except: [:show]
   def index
     @collections = Collection.all
-    render :index
+    render :json => @collections
   end
 
   def show
     @collection = Collection.find(params[:id])
-    @posts = @collection.posts
-    render :show
+    render :json => @collection, include: :posts
   end
 
-  def new
-    @collection = Collection.new
-    render :new
-  end
+  # def new
+  #   #i think this can be safely deprecated
+  #   @collection = Collection.new
+  #   render :new
+  # end
 
   def create
+    #this is still largely the same
     @collection = Collection.new(params[:collection])
     @collection.owner_id = current_user.id
     if @collection.save
-      redirect_to collection_url(@collection)
+      render :json => @collection
     else
-      flash[:errors] = @collection.errors.full_messages
-      render :new
+      render :json => @collection.errors.full_messages, status: 422
     end
   end
 
-  def edit
+  def edit #TODO fix this
+    #figure out what the best way to do this would be. 
     @collection = Collection.find(params[:id])
-    @users = User.all
+    @users = User.all #change this to invitable users
     @invited_user_ids = @collection.invited_user_ids if @collection.invite_only
-    render :edit
+    render :json => @users
   end
 
   def update
@@ -49,11 +50,10 @@ class CollectionsController < ApplicationController
         @collection.save!
       end
 
-      redirect_to collection_url(@collection)
+      render :json => @collection
     
     rescue ActiveRecord::RecordInvalid => invalid
-      flash[:errors] = @collection.errors.full_messages
-      render :edit
+      render :json => @collection.errors.full_messages, status: 422
     end
   end
 
@@ -61,7 +61,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     @collection.posts = []
     @collection.destroy
-    redirect_to collections_url
+    render :json => @collection
   end
 
 end

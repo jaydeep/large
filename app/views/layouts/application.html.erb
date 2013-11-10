@@ -7,23 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="container">
+
+<div id="user-nav">
+   <% if current_user %>
+    Welcome, <%= current_user.name %>!
+    <%= link_to "Sign out!", session_url, method: :delete %>
+  <% else %>
+    <%= link_to "Sign In With Twitter", "/auth/twitter" %>
+  <% end %>
+</div>
+
+<div id="sidebar">
   <%= link_to "Posts", posts_url %>
   <%= link_to "Collections", collections_url %>
-  <div id="user_nav"> 
-    <% if current_user %>
-      Welcome, <%= current_user.name %>!
-      <%= link_to "Sign out!", session_url, method: :delete %>
-    <% else %>
-      <%= link_to "Sign In With Twitter", "/auth/twitter" %>
-    <% end %>
-  </div>
-
+  <a href="/#/collections">Collection View</a>
+</div>
+<h1>Content</h1>
+<div id="content">
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, id: "flash_#{name}" %>
   <% end %>
+
+  <%# yield %>
 </div>
-  <%= yield %>
 
 </body>
 </html>

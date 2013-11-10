@@ -1,0 +1,11 @@
+<a href=""> Go home! </a>
+<h1> ALL THE COLLECTIONS! </h1>
+<ul>
+<% collections.forEach(function(collection){ %>
+  <li>
+    <a href="/#/collections/<%= collection.id %>"> <%= collection.escape('name') %> </a>
+    by <%= collection.escape('owner_id') %> 
+    TODO FOLLOW BUTTON!
+  </li>
+<% }); %>
+</ul>

@@ -1,9 +1,9 @@
 Mediumlarge::Application.routes.draw do
   resource :session, only: [:create, :destroy]
   resources :posts
-  resources :collections do
-    resource :collection_follower, only: [:create, :destroy]
-  end
+  resources :collections
+  resource :collection_follower, only: [:create, :destroy]
+  
   root :to => "home#index"
 
   #better way to do the following.
