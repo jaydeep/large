@@ -17,8 +17,6 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   showHomePage: function(){
     console.log('hi from show home page');
     this.$sidebar.prepend("<h1>Sidebar</h1>"); //TODO: sidebar view
-    this.$userNav.prepend("<h1>UserNav</h1>"); //TODO: usernav view
-    // this.$content.prepend("<h1>Content</h1>"); //TODO: content view
   }, 
 
   showCollectionsIndex: function(){
@@ -31,9 +29,15 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
     this._swapView(collectionIndexView);
   },
   
-  showCollectionView: function(){
+  showCollectionView: function(collectionId){
     console.log("hi from collection view");
+    var collectionToShow = this.collection.get(collectionId);
 
+    var collectionShowView = new Mediumlarge.Views.CollectionsShow({
+      model: collectionToShow
+    })
+
+    this._swapView(collectionShowView)
   },
 
   showPost: function(postId){
