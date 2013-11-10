@@ -22,8 +22,8 @@
   <%= link_to "Collections", collections_url %>
   <a href="/#/collections">Collection View</a>
 </div>
-<h1>Content</h1>
 <div id="content">
+  <h1>Content</h1>
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, id: "flash_#{name}" %>
   <% end %>

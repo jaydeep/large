@@ -1,3 +1,32 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html, body{
+  height: 100%;
+  margin: 0px;
+}
+
+#user-nav{
+  display: none
+}
+
+#content{
+  height: 100%;
+  padding-left: 15px;
+  margin-left: 220px;
+}
+
+#sidebar{
+  width: 200px;
+  height: 100%;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 5px solid black;
+}
+
+h1 {
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
