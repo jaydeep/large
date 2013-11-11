@@ -11,6 +11,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
     "": "showHomePage",
     "collections": "showCollectionsIndex",
     "collections/:collectionId": "showCollectionView",
+    "collections/:collectionId/:postId": "showPostFromCollection",
     "post/:postId": "showPost"
   }, 
 
@@ -36,13 +37,44 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
 
     var collectionShowView = new Mediumlarge.Views.CollectionsShow({
       model: collectionToShow
-    })
+    });
 
     this._swapView(collectionShowView)
   },
 
-  showPost: function(postId){
-    console.log('hi from showpost with post_id:' + post_id);
+  showPost: function(postId){ //not convinced this is necessary
+    console.log('hi from post view...IN PROGRESS');
+    var post = new Mediumlarge.Models.Post({ id: postId });
+    var that = this;
+
+    post.fetch({wait: true, 
+      success: function(data, response){
+        console.log('yay it worked');
+        
+        var postShowView = new Mediumlarge.Views.PostsShow({
+          model: post
+        });
+
+        that._swapView(postShowView);
+      },
+
+      error: function(data, response){
+        console.log('eff. something went wrong in show post');
+        debugger;
+      }
+    });
+  },
+
+  showPostFromCollection: function(collectionId, postId){
+    console.log('hi from post from collection');
+    var parentCollection = this.collection.get(collectionId);
+    var childPost = parentCollection.get('posts').get(postId);
+
+    var postShowView = new Mediumlarge.Views.PostsShow({
+      model: childPost
+    });
+
+    this._swapView(postShowView);
   },
   
   _swapSideBar: function(newSidebar){

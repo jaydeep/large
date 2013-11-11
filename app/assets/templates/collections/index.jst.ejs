@@ -1,9 +1,11 @@
 <h1> ALL THE COLLECTIONS! </h1>
-<ul>
+<ul class="collections">
 <% collections.forEach(function(collection){ %>
   <li>
-    <a href="/#/collections/<%= collection.id %>"> <%= collection.escape('name') %> </a>
-    by <%= collection.escape('owner_id') %> 
+    <a href="/#/collections/<%= collection.id %>"
+      data-id="<%= collection.id %>"> 
+        <%= collection.escape('name') %>
+    </a> by <%= collection.escape('owner_id') %> 
     TODO FOLLOW BUTTON!
   </li>
 <% }); %>

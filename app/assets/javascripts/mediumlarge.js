@@ -15,7 +15,7 @@ window.Mediumlarge = {
     collections.fetch({
       success: function(data, response){ //on success
 
-        var router = new Mediumlarge.Routers.Collections({
+        Mediumlarge.router = new Mediumlarge.Routers.Collections({
           $sb : self.$sidebar, $un : self.$userNav, 
           $ct : self.$content, collection : data
         });

@@ -2,15 +2,14 @@ Mediumlarge.Views.CollectionsShow = Backbone.View.extend({
   template: JST['collections/show'], 
 
   render : function(){
-    var collectionsPosts = this.model.posts;//THIS WILL FAIL
-    
+    var collectionsPosts = this.model.get('posts');
+
     var renderedContent = this.template({
       collection : this.model,
-      //posts : collectionsPosts
+      posts : collectionsPosts
     });
 
     this.$el.html(renderedContent);
-
     return this;
   }
 });

@@ -1,4 +1,11 @@
 <h1><%= collection.escape('name') %></h1>
 <h2><%= collection.escape('description') %></h2>
 
-All the posts!(..coming soon)
+All the posts!
+<ul class="posts">
+  <% posts.forEach(function(post){ %> 
+    <li>
+      <a href="/#/collections/<%= collection.id %>/<%= post.id %>"><%= post.escape('title') %></a> by <%= post.get('user_id') %>
+    </li>
+  <% }); %>
+</ul>
