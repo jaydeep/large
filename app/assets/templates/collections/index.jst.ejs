@@ -6,7 +6,9 @@
       data-id="<%= collection.id %>"> 
         <%= collection.escape('name') %>
     </a> by <%= collection.escape('owner_id') %> 
-    TODO FOLLOW BUTTON!
+    <button type="submit"
+      class="follow" 
+      data-id="<%= collection.id %>">Follow</button>
   </li>
 <% }); %>
 </ul>
