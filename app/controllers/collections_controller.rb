@@ -38,8 +38,6 @@ class CollectionsController < ApplicationController
       end
       @collection.assign_attributes(params[:collection])
 
-      
-      
       @collection.transaction do
         @collection.save!
       end

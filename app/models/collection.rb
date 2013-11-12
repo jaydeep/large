@@ -1,4 +1,3 @@
-
 class Collection < ActiveRecord::Base
   attr_accessible :name, :description, :invite_only
   validates_presence_of :name, :description, :owner_id

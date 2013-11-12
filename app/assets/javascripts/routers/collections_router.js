@@ -16,6 +16,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   }, 
 
   showHomePage: function(){
+    //TODO
     console.log('hi from show home page');
     this.$sidebar.html("<h1>Sidebar</h1><a href=''>Home</a><br><a href='/#/collections'>Collection View</a>"); //TODO: sidebar view
   }, 
@@ -42,13 +43,13 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   },
 
   showPost: function(postId){ //not convinced this is necessary
-    console.log('hi from post view...IN PROGRESS');
+    console.log("hi from post view...i'll be fetching in a moment");
     var post = new Mediumlarge.Models.Post({ id: postId });
     var that = this;
 
     post.fetch({wait: true, 
       success: function(data, response){
-        console.log('yay it worked');
+        console.log('yay post was fetched');
         
         var postShowView = new Mediumlarge.Views.PostsShow({
           model: post
@@ -65,15 +66,8 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   },
 
   showPostFromCollection: function(collectionId, postId){
-    console.log('hi from post from collection');
-    var parentCollection = this.collection.get(collectionId);
-    var childPost = parentCollection.posts.get(postId);
-
-    var postShowView = new Mediumlarge.Views.PostsShow({
-      model: childPost
-    });
-
-    this._swapView(postShowView);
+    console.log('in show post from collection, redirecting to post view...');
+    this.showPost(postId);
   },
   
   _swapSideBar: function(newSidebar){
