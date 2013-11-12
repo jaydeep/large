@@ -25,6 +25,14 @@ class Post < ActiveRecord::Base
     recommendor_ids.include?(user_id)
   end
 
+  def read_time_estimation
+    num_words / 200
+  end
+
+  def num_words
+    body.split(' ').count
+  end
+
   ##Analytics
   #num of reads/views
   #time spent on article
