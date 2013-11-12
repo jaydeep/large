@@ -5,7 +5,7 @@ All the posts!
 <ul class="posts">
   <% posts.forEach(function(post){ %> 
     <li>
-      <a href="/#/collections/<%= collection.id %>/<%= post.id %>"><%= post.escape('title') %></a> by <%= post.get('author').name %>
+      <a href="/#/collections/<%= collection.id %>/<%= post.id %>"><%= post.escape('title') %></a> by <img src="<%= post.get('author').profile_image %>"> <%= post.get('author').name %>
     </li>
   <% }); %>
 </ul>
