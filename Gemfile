@@ -7,6 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'backbone-on-rails'
+gem 'rabl'
+gem 'oj'
 
 group :development do 
   gem 'rails-pry'

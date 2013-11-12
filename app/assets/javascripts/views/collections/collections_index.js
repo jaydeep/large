@@ -2,7 +2,7 @@ Mediumlarge.Views.CollectionsIndex = Backbone.View.extend({
   template: JST['collections/index'], 
   events: {
     "click .collections li a" : "fetchThenShow",
-    "click button" : "followCollectionEvent"
+    "click .collection-follow-button" : "followCollectionButtonEvent",
   },
 
   render : function(){
@@ -34,41 +34,47 @@ Mediumlarge.Views.CollectionsIndex = Backbone.View.extend({
     });
   },
 
-  followCollectionEvent: function(event){
+  followCollectionButtonEvent: function(event){
     event.preventDefault();
 
     var button = $(event.target);
+    var buttonType = $(event.target).attr('data-button-type');
     var collectionId = $(event.target).attr('data-id');
-    console.log('i was clicked :' + collectionId);
-    this._swapButton(button);
-
-    var followCollection = new Mediumlarge.Model.CollectionFollow({
-      collection_id : collectionId
-    });
-    
     var self = this;
 
-    followCollection.save({
-      success: function(data, response){
-        console.log('follow was successful');
-        self._swapButton(button);
-      },
-      error: function(data, response){
-        console.log('follow was unsucesseful');
-        debugger;
-      }
+    var success = function(data, response){
+      console.log('follow was successful');
+      self._swapButton(button, buttonType);
+    }
+
+    var error = function(data, response){
+      console.log('follow was unsucessful');
+      debugger;
+    }
+
+    var followCollection = new Mediumlarge.Models.CollectionFollower({
+      collectionId : collectionId
     });
+
+    if (buttonType === 'follow'){
+      followCollection.save({},{
+        success: success, 
+        error: success
+      });
+    }
+    else{
+      followCollection.destroy({
+        success: success, 
+        error: error
+      });
+    }
   },
 
-  _swapButton: function(button){
-    // var truthiness = (button.attr('class') === "follow")
-    // button.toggleClass("follow", !truthiness);//add/rmv follow
-    // button.toggleClass("unfollow", truthiness);//rmv/add unfollow
-    button.toggleClass('follow unfollow');
-    // change the text
-    var newText = button.attr('class');
-    //capitalize
-    newText = newText.charAt(0).toUpperCase() + newText.slice(1);
+  _swapButton: function(button, buttonType){
+    var newButtonType = (buttonType === 'follow') ? 'unfollow' : 'follow';
+    button.attr('data-button-type', newButtonType);
+
+    var newText = newButtonType.charAt(0).toUpperCase() + newButtonType.slice(1);
     button.html(newText);
   }
 

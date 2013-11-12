@@ -22,7 +22,6 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
 
   showCollectionsIndex: function(){
     console.log('hi from show collection'); 
-
     var collectionIndexView = new Mediumlarge.Views.CollectionsIndex({
       collection: this.collection
     });
@@ -68,7 +67,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   showPostFromCollection: function(collectionId, postId){
     console.log('hi from post from collection');
     var parentCollection = this.collection.get(collectionId);
-    var childPost = parentCollection.get('posts').get(postId);
+    var childPost = parentCollection.posts.get(postId);
 
     var postShowView = new Mediumlarge.Views.PostsShow({
       model: childPost

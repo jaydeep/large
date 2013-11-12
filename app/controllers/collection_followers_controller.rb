@@ -7,9 +7,9 @@ class CollectionFollowersController < ApplicationController
     end
     
     if @cf.save
-      redirect_to collection_url(params[:collection_id])
+      render :json => @cf
     else
-      flash[:errors] = @cf.errors.full_messages
+      render :json => { :errors => @cf.errors.full_messages }, status: 422
     end
   end
 
@@ -17,7 +17,7 @@ class CollectionFollowersController < ApplicationController
     @cf = CollectionFollower.find_by_collection_id_and_follower_id(
       params[:collection_id], current_user.id).delete
 
-    redirect_to collections_url
+    render :json => @cf
   end
 
 end

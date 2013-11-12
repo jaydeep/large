@@ -5,7 +5,7 @@ All the posts!
 <ul class="posts">
   <% posts.forEach(function(post){ %> 
     <li>
-      <a href="/#/collections/<%= collection.id %>/<%= post.id %>"><%= post.escape('title') %></a> by <%= post.get('user_id') %>
+      <a href="/#/collections/<%= collection.id %>/<%= post.id %>"><%= post.escape('title') %></a> by <%= post.get('author').name %>
     </li>
   <% }); %>
 </ul>

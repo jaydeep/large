@@ -2,19 +2,13 @@ class CollectionsController < ApplicationController
   before_filter :require_logged_in_user!, except: [:show]
   def index
     @collections = Collection.all
-    render :json => @collections
+    render "index", handlers: [:rabl]
   end
 
   def show
     @collection = Collection.find(params[:id])
-    render :json => @collection, include: :posts
+    render "show", handlers: [:rabl]
   end
-
-  # def new
-  #   #i think this can be safely deprecated
-  #   @collection = Collection.new
-  #   render :new
-  # end
 
   def create
     #this is still largely the same
