@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def show
     #send the json for the post the user has clicked on
     @post = Post.find(params[:id])
-    render :json => @post
+    render "show", handlers: [:rabl]
   end
 
   def new
