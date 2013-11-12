@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112191706) do
+ActiveRecord::Schema.define(:version => 20131112192425) do
+
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bookmarks", ["post_id", "user_id"], :name => "index_bookmarks_on_post_id_and_user_id", :unique => true
+  add_index "bookmarks", ["post_id"], :name => "index_bookmarks_on_post_id"
+  add_index "bookmarks", ["user_id"], :name => "index_bookmarks_on_user_id"
 
   create_table "collection_followers", :force => true do |t|
     t.integer  "follower_id",   :null => false
@@ -57,6 +68,17 @@ ActiveRecord::Schema.define(:version => 20131112191706) do
   add_index "posts", ["title"], :name => "index_posts_on_title"
   add_index "posts", ["user_id", "title"], :name => "index_posts_on_user_id_and_title", :unique => true
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "recommendations", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "recommendations", ["post_id", "user_id"], :name => "index_recommendations_on_post_id_and_user_id", :unique => true
+  add_index "recommendations", ["post_id"], :name => "index_recommendations_on_post_id"
+  add_index "recommendations", ["user_id"], :name => "index_recommendations_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "provider",         :null => false
