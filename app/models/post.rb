@@ -11,7 +11,20 @@ class Post < ActiveRecord::Base
   #TODO:has many recommendors
 
   #TODO:num of recommendations
-  
+  has_many :recommendations
+  has_many :recommendors, through: :recommendations, source: :user
+
+  has_many :bookmarks
+  has_many :bookmarkers, through: :bookmarks, source: :user
+
+  def already_bookmarked?(user_id)
+    bookmarker_ids.include?(user_id)
+  end
+
+  def already_recommended?(user_id)
+    recommendor_ids.include?(user_id)
+  end
+
   ##Analytics
   #num of reads/views
   #time spent on article
