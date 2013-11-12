@@ -10,5 +10,9 @@ child(:posts, :object_root => false) do
     post.already_bookmarked?(current_user.id)
   end
 
+  node( :read_time_estimation ) do |post|
+    post.read_time_estimation
+  end
+
   child(:author => :author) { attributes :name, :profile_image }
 end
