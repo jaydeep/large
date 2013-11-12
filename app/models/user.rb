@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.name = auth['info']['name']
+      user.description = auth['info']['description']
+      user.location = auth['info']['location']
+      user.twitter_handle = "@" + auth['info']['nickname']
+      user.twitter_url = auth['info']['urls']['Twitter']
+      user.profile_image = auth['info']['image']
     end
   end
 

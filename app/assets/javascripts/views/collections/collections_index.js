@@ -38,8 +38,8 @@ Mediumlarge.Views.CollectionsIndex = Backbone.View.extend({
     event.preventDefault();
 
     var button = $(event.target);
-    var buttonType = $(event.target).attr('data-button-type');
-    var collectionId = $(event.target).attr('data-id');
+    var buttonType = button.attr('data-button-type');
+    var collectionId = button.attr('data-id');
     var self = this;
 
     var success = function(data, response){

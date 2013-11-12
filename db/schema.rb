@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108051732) do
+ActiveRecord::Schema.define(:version => 20131112183516) do
 
   create_table "collection_followers", :force => true do |t|
     t.integer  "follower_id",   :null => false
@@ -58,14 +58,21 @@ ActiveRecord::Schema.define(:version => 20131108051732) do
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "provider",   :null => false
-    t.string   "uid",        :null => false
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "provider",         :null => false
+    t.string   "uid",              :null => false
+    t.string   "name",             :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.text     "description"
+    t.string   "location"
+    t.string   "twitter_handle",   :null => false
+    t.string   "twitter_url",      :null => false
+    t.string   "profile_image",    :null => false
+    t.string   "background_image"
   end
 
   add_index "users", ["name"], :name => "index_users_on_name"
+  add_index "users", ["twitter_handle"], :name => "index_users_on_twitter_handle", :unique => true
   add_index "users", ["uid"], :name => "index_users_on_uid"
 
 end
