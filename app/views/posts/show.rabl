@@ -3,7 +3,7 @@ attributes :id, :title, :subtitle, :body
 
 child(:collection) { attributes :name }
 
-child(:author) { attributes :name }
+child(:author) { attributes :name, :profile_image }
 
 node(:read_time_estimation) { |p| @post.read_time_estimation }
 

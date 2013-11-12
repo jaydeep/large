@@ -1,3 +1,6 @@
 <h1>Title: <%= post.escape('title') %> </h1>
 <h2>Subtitle: <%= post.escape('subtitle') %> </h2>
 <h3>Body: <%= post.escape('body') %> </h3>
+
+Post written by: <%= post.get('user').name %>
+<img src="<%= post.get('user').profile_image %>" alt="hiiiii :)">
