@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112183516) do
+ActiveRecord::Schema.define(:version => 20131112191706) do
 
   create_table "collection_followers", :force => true do |t|
     t.integer  "follower_id",   :null => false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20131112183516) do
     t.boolean  "invite_only", :default => false, :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.string   "image_url"
   end
 
   add_index "collections", ["name"], :name => "index_collections_on_name", :unique => true
