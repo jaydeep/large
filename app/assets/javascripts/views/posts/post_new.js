@@ -31,7 +31,7 @@ Mediumlarge.Views.PostNew = Backbone.View.extend({
       error:function(data, response){
         debugger;
       }
-    })
+    });
   },
 
   postFormAsDraft: function(event){

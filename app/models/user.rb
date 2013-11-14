@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
 
 
   def self.create_with_omniauth(auth)
-    create! do |user|
+
+    me = self.new do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.name = auth['info']['name']
@@ -30,10 +31,12 @@ class User < ActiveRecord::Base
       user.twitter_url = auth['info']['urls']['Twitter']
       user.profile_image = auth['info']['image']
     end
+
+    me.save
   end
 
   def is_current_user?(current_user_id)
-   current_user_id == id
+   current_user_id == self.id
   end
 
   def collections

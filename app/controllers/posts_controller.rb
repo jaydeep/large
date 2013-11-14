@@ -5,12 +5,14 @@ class PostsController < ApplicationController
     #this will become the route to get the home page
     # and recommended posts
     @posts = Post.recommendedPosts
+    @current_user_id = current_user.id
     render "index", handlers: [:rabl]
   end
 
   def show
     #send the json for the post the user has clicked on
     @post = Post.find(params[:id])
+    @current_user_id = current_user.id
     render "show", handlers: [:rabl]
   end
 

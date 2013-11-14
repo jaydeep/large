@@ -2,6 +2,7 @@ class CollectionsController < ApplicationController
   before_filter :require_logged_in_user!, except: [:show]
   def index
     @collections = Collection.all
+    @current_user_id = current_user.id
     render "index", handlers: [:rabl]
   end
 

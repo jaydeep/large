@@ -1,7 +1,7 @@
 Mediumlarge.Views.PostEdit = Backbone.View.extend({
   template: JST['posts/edit'],
   events: {
-    "click submit" : "putForm"
+    "click #publish" : "putForm"
   },
 
   render: function(){
@@ -19,6 +19,26 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
 
   putForm: function(event){
     event.preventDefault();
-    console.log('this will happen eventually');
+    console.log('post-edit: this is getting posted.');
+
+    this.model.set({
+      title : $("#post-title").val(),
+      subtitle: $("#post-subtitle").val(),
+      body : $("#post-body").val()
+    });
+
+    var self = this;
+
+    this.model.save({}, {
+      success:function(data, response){
+        Mediumlarge.posts.add(response);
+        console.log('successfully posted, hopefully.');
+        //navigates successfully, TODO: but this makes an extra request.
+        Mediumlarge.router.navigate('/post/'+self.model.id, true); 
+      },
+      error:function(data, response){
+        debugger;
+      }
+    });
   }
 });
