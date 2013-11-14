@@ -1,13 +1,8 @@
-#should probably be two collections
-  ##one for recommended
-  ##one for latest
 collection @posts
 attributes :id, :title, :subtitle
 
-if :collection
-  child(:collection) do
-    attributes :name
-  end
+child(:collection, :unless => lambda { |p| p.collection.nil? }) do
+  attributes :name
 end
 
 node(:read_time_estimate) do |p|

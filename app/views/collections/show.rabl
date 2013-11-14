@@ -1,5 +1,6 @@
 object @collection
 attributes :id, :name, :description, :invite_only
+
 child(:owner => :owner) { attributes :name }
 node(:num_posts) { |c| @collection.num_posts }
 
