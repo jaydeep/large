@@ -1,1 +1,20 @@
-new.jst.ejs
+<form name="post-form-new" action="/posts/new" method="POST">
+  <input type="hidden" name="authenticity_token" value="TODO">
+
+  <input type="text" id="post-title" name="post[title]" placeholder="Enter a title...">
+  <input type="text" id="post-subtitle" name="post[subtitle]" placeholder="Enter a subtitle">
+
+  <label for="collection">Choose a collection</label>
+  <select id="collection" name="post[collection_id]">
+    <option value="">No Collection</option>
+  </select><br>
+
+  <textarea 
+    rows="50" cols="100" id="post-body"
+    name="post[body]" placeholder="Content goes here.">
+  </textarea>
+  <br>
+
+  <button id="draft">Save as Draft.</button>
+  <button id="publish">Publish post.</button>
+</form>

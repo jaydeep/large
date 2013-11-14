@@ -3,7 +3,11 @@ attributes :id, :title, :subtitle, :body
 
 child(:collection) { attributes :name }
 
-child(:author => :author) { attributes :name, :profile_image }
+child(:author => :author) do
+ attributes :name, :profile_image
+
+ node(:is_current_user) { |a| a.is_current_user?(current_user.id) }
+end
 
 node(:read_time_estimation) { |p| @post.read_time_estimation }
 

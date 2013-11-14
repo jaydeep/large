@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112192425) do
+ActiveRecord::Schema.define(:version => 20131112233946) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "post_id"
@@ -56,13 +56,14 @@ ActiveRecord::Schema.define(:version => 20131112192425) do
   add_index "collections", ["owner_id"], :name => "index_collections_on_owner_id"
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id",       :null => false
-    t.string   "title",         :null => false
-    t.string   "subtitle",      :null => false
-    t.text     "body",          :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "user_id",                           :null => false
+    t.string   "title",                             :null => false
+    t.string   "subtitle",                          :null => false
+    t.text     "body",                              :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "collection_id"
+    t.boolean  "publish_status", :default => false
   end
 
   add_index "posts", ["title"], :name => "index_posts_on_title"

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  
   has_many :posts
   has_many :owned_collections, 
   class_name: "Collection", 
@@ -31,6 +30,10 @@ class User < ActiveRecord::Base
       user.twitter_url = auth['info']['urls']['Twitter']
       user.profile_image = auth['info']['image']
     end
+  end
+
+  def is_current_user?(current_user_id)
+   current_user_id == id
   end
 
   def collections

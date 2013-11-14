@@ -10,16 +10,34 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   routes: {
     "": "showHomePage",
     "collections": "showCollectionsIndex",
+    // "collection/new" :"newCollection",
+    // "collections/:collectionId/edit" :"editCollection",
     "collections/:collectionId": "showCollectionView",
     "collections/:collectionId/:postId": "showPostFromCollection",
-    "post/:postId": "showPost"
+    "post/new": "newPost",
+    "post/:postId": "showPost",
+    "post/:postId/edit": "editPost"
   }, 
 
   showHomePage: function(){
     //TODO
     console.log('hi from show home page');
-    this.$sidebar.html("<h1>Sidebar</h1><a href=''>Home</a><br><a href='/#/collections'>Collection View</a>"); //TODO: sidebar view
+    this.$sidebar.html("<h1>Sidebar</h1><a href='/#/post/new'>New Post</a><br><a href='/#/collections'>Collection View</a>"); //TODO: sidebar view
   }, 
+
+  newPost:function(){
+    console.log('hi from new post');
+    var newPostView = new Mediumlarge.Views.PostNew({
+    });
+
+    this._swapView(newPostView);
+  },
+
+  editPost:function(postId){
+    console.log('hi from edit post:' + postId);
+
+    this._swapView(editPostView);
+  },
 
   showCollectionsIndex: function(){
     console.log('hi from show collection'); 

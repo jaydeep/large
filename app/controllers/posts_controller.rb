@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    #this is still the same. 
+    #this is still the same.
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
     if @post.save
