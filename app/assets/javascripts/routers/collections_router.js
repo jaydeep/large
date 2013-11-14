@@ -78,7 +78,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
 
     post.fetch({wait: true, 
       success: function(data, response){
-        Mediumlarge.posts.add(response);
+        Mediumlarge.posts.add(post);
         console.log('yay post was fetched');
         
         var postShowView = new Mediumlarge.Views.PostsShow({

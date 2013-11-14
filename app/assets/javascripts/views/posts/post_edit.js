@@ -20,13 +20,13 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
 
   makeDraft: function(event){
     event.preventDefault();
-    this.model.set({draft : false });
+    this.model.set({publish_status : false });
     this.saveForm();
   },
 
   putForm:function(event){
     event.preventDefault();
-    this.model.set({draft: true});
+    this.model.set({publist_status: true});
     this.saveForm();
   },
 

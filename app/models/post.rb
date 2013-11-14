@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :subtitle, :body, :collection_id
+  attr_accessible :title, :subtitle, :body, :collection_id, :publish_status
 
   validates_presence_of :title, :subtitle, :body
 
@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
 
   def self.recommendedPosts
     #TODO
-    Post.limit(10);
+    Post.limit(10).where("publish_status = ?", true);
   end
 
   ##Analytics

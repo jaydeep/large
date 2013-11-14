@@ -20,12 +20,11 @@ Mediumlarge.Views.PostsShow = Backbone.View.extend({
   },
 
   deleteTheForm: function(event){
-    console.log(Mediumlarge.posts.length);
-    this.model.destroy({
-      wait:true,
+
+    Mediumlarge.posts.get(this.model.id).destroy({
+      wait: true,
       success:function(data,response){
         console.log('deleted');
-        console.log(Mediumlarge.posts.length);
         Mediumlarge.router.navigate("/", true);
       }, 
       error:function(data,response){

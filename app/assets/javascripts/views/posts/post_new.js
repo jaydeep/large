@@ -19,13 +19,14 @@ Mediumlarge.Views.PostNew = Backbone.View.extend({
   postForm: function(event){
     console.log('posting form');
     event.preventDefault();
+    this.post.set({publish_status : true});
     this.savePost();
   },
 
   postFormAsDraft: function(event){
     event.preventDefault();
     console.log('posting form as draft');
-    this.post.set({draft : true});
+    this.post.set({publish_status : false});
     this.savePost();
   },
 

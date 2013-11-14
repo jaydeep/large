@@ -1,16 +1,14 @@
 Mediumlarge.Models.Post = Backbone.Model.extend({
-  defaults:{
-    'draft' : false
-  },
-
   urlRoot: "/posts", 
   
-  toJSON:function(){
+  toJSON:function(options){
+    var payload = _.extend({}, this.attributes);
+    
     return { 
         title : this.get('title'),
         subtitle : this.get('subtitle'),
         body: this.get('body'), 
-        draft : this.get('draft')
+        publish_status : this.get('publish_status')
     }
   }
 });
