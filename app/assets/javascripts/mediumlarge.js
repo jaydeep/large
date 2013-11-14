@@ -9,15 +9,19 @@ window.Mediumlarge = {
     this.$content = $("#content");
     Mediumlarge.csrfToken = $("meta[name='csrf-token']").attr('content');
     
-    //fetch the posts and collections.
-    Mediumlarge.fetchedCollections = new Mediumlarge.Collections.Collections();
-    Mediumlarge.fetchedPosts = new Mediumlarge.Collections.Posts();
+    //fetch the posts and collections. TOOD: how to improve this?
+    Mediumlarge.collections = new Mediumlarge.Collections.Collections();
+    Mediumlarge.posts = new Mediumlarge.Collections.Posts();
+    Mediumlarge.homePagePosts = new Mediumlarge.Collections.Posts();
     var self = this;
 
-    posts.fetch({
+    //fetches the top 5 posts, and the latest 5 posts
+    Mediumlarge.homePagePosts.fetch({
       success: function(data, response){ //on success
-        
-        collections.fetch({ 
+        //TODO: add homePagePosts to posts
+        Mediumlarge.posts.reset(response);
+  
+        Mediumlarge.collections.fetch({ //start fetching the collections
           success:function(data, response){console.log('collections fetched!')}, 
             error:function(data, response){debugger;}
         });

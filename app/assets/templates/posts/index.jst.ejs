@@ -1,0 +1,17 @@
+<h1>Posts</h1>
+
+All the posts for now, will soon be split into recommended vs latest.
+<br>
+
+<ul>
+<% posts.forEach(function(post){ %>
+    <li>
+      <img src="<%= post.get('author').profile_image %>">
+      <a href="/#/post/<%= post.id %>">
+        <b><%= post.escape('title') %></b>
+        <em><%= post.escape('subtitle') %></em>
+      </a>
+      by <a href="#"><%= post.get('author').name %></a>
+    </li>
+<% }); %>
+</ul>

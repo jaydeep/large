@@ -21,9 +21,9 @@ Mediumlarge.Views.PostNew = Backbone.View.extend({
       body : $("#post-body").val()
     });
 
-    debugger;
     post.save({}, {
       success:function(data, response){
+        Mediumlarge.posts.add(response);
         console.log('successfully posted, hopefully.');
         //navigates successfully, TODO: but this makes an extra request.
         Mediumlarge.router.navigate('/post/'+post.id, true); 

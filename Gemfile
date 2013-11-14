@@ -11,8 +11,7 @@ gem 'rabl'
 gem 'oj'
 
 group :development do 
-  gem 'rails-pry'
-  gem 'pry-debugger'
+  gem 'debugger'
 end
 
 # Gems used only for assets and not required

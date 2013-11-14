@@ -33,6 +33,11 @@ class Post < ActiveRecord::Base
     body.split(' ').count
   end
 
+  def self.recommendedPosts
+    #TODO
+    Post.limit(10);
+  end
+
   ##Analytics
   #num of reads/views
   #time spent on article

@@ -1,5 +1,5 @@
-<form name="post-form-new" action="/posts/new" method="POST">
-  <input type="hiddent" name="_method" value="PUT">
+<form name="post-form-edit" action="/posts/<%= id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
 
   <input type="text" id="post-title" name="post[title]" 
     placeholder="Enter a title..." value="<%= title %>">
@@ -13,7 +13,7 @@
 
   <textarea 
     rows="50" cols="100" id="post-body"
-    name="post[body]" placeholder="Content goes here.">
+    name="post[body]" placeholder="Content goes here." value="hello.">
     <%= body %>
   </textarea>
   <br>

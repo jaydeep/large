@@ -1,5 +1,5 @@
 Mediumlarge.Views.PostEdit = Backbone.View.extend({
-  template: JST['collections/edit'],
+  template: JST['posts/edit'],
   events: {
     "click submit" : "putForm"
   },
@@ -9,7 +9,8 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
     var subtitle  = this.model.get('subtitle');
     var body      = this.model.get('body');
     var renderedContent = this.template({
-      title : title, subtitle : subtitle, body : body
+      id: this.model.id, title : title,
+      subtitle : subtitle, body : body
     });
 
     this.$el.html(renderedContent);

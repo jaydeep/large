@@ -1,7 +1,6 @@
 object @post
-attributes :id, :title, :subtitle, :body
 
-child(:collection) { attributes :name }
+attributes :id, :title, :subtitle, :body
 
 child(:author => :author) do
  attributes :name, :profile_image

@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   def index
     #this will become the route to get the home page
     # and recommended posts
-    @posts = Post.all
-    render :json => @posts
+    @posts = Post.recommendedPosts
+    render "index", handlers: [:rabl]
   end
 
   def show
@@ -32,18 +32,18 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    #like new, only sends open collections
-    @post = Post.find(params[:id])
-    @collections = Collection.open_collections(current_user)
-    render :json => @collections
-  end
+  # def edit
+  #   #like new, only sends open collections
+  #   @post = Post.find(params[:id])
+  #   @collections = Collection.open_collections(current_user)
+  #   render :json => @collections
+  # end
 
   def update 
     #this works largely the same, 
     @post = Post.find(params[:id])
     if @post.update_attributes(params[:post])
-      render :json => @post
+      render "show", handlers: [:rabl]
     else
       render :json => @post.errors.full_messages, status: 422
     end
