@@ -1,4 +1,8 @@
 Mediumlarge.Views.PostNew = Backbone.View.extend({
+  initialize: function(){
+    this.post = new Mediumlarge.Models.Post();
+  },
+
   template: JST['posts/new'],
   events: {
     "click #publish" : "postForm",
@@ -13,29 +17,36 @@ Mediumlarge.Views.PostNew = Backbone.View.extend({
   },
 
   postForm: function(event){
+    console.log('posting form');
     event.preventDefault();
-    console.log('post-new: this is getting posted.');
-    var post =  new Mediumlarge.Models.Post({
+    this.savePost();
+  },
+
+  postFormAsDraft: function(event){
+    event.preventDefault();
+    console.log('posting form as draft');
+    this.post.set({draft : true});
+    this.savePost();
+  },
+
+  savePost: function(){
+    this.post.set({
       title : $("#post-title").val(),
       subtitle: $("#post-subtitle").val(),
       body : $("#post-body").val()
     });
 
-    post.save({}, {
+    this.post.save({}, {
       success:function(data, response){
         Mediumlarge.posts.add(response);
-        console.log('successfully posted, hopefully.');
+
+        console.log('successfully posted');
         //navigates successfully, TODO: but this makes an extra request.
-        Mediumlarge.router.navigate('/post/'+post.id, true); 
+        Mediumlarge.router.navigate('/post/'+response.id, true); 
       },
       error:function(data, response){
         debugger;
       }
     });
-  },
-
-  postFormAsDraft: function(event){
-    event.preventDefault();
-    console.log('this button DOES NOTHING!');
   }
 });

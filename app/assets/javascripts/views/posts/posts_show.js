@@ -3,7 +3,7 @@ Mediumlarge.Views.PostsShow = Backbone.View.extend({
   template: JST['posts/show'],
   events: {
     "click #post-edit" : "navToEditForm",
-    "click #post-delete": "deleteTheFORM"
+    "click #post-delete": "deleteTheForm"
   },
   render: function(){
     var renderedContent = this.template({
@@ -19,8 +19,18 @@ Mediumlarge.Views.PostsShow = Backbone.View.extend({
     Mediumlarge.router.navigate("/post/" + this.model.id + "/edit", true);
   },
 
-  deleteTheFORM: function(event){
-    event.preventDefault();
-    console.log('TODO. delete button');
+  deleteTheForm: function(event){
+    console.log(Mediumlarge.posts.length);
+    this.model.destroy({
+      wait:true,
+      success:function(data,response){
+        console.log('deleted');
+        console.log(Mediumlarge.posts.length);
+        Mediumlarge.router.navigate("/", true);
+      }, 
+      error:function(data,response){
+        debugger;
+      }
+    });
   }
 });

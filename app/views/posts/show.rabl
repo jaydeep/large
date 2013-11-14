@@ -19,7 +19,7 @@ node(:read_time_estimation) do |p|
 end
 
 node(:already_bookmarked) do |p| 
-  @post.already_bookmarked?(@2current_user_id)
+  @post.already_bookmarked?(@current_user_id)
 end
 
 node(:already_recommended) do |p| 
