@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     #this will become the route to get the home page
     # and recommended posts
-    @posts = Post.recommendedPosts
+    @posts = Post.homePagePosts
     @current_user_id = current_user.id
     render "index", handlers: [:rabl]
   end

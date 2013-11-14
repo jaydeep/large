@@ -24,6 +24,7 @@ Mediumlarge.Views.PostsShow = Backbone.View.extend({
     Mediumlarge.posts.get(this.model.id).destroy({
       wait: true,
       success:function(data,response){
+        
         console.log('deleted');
         Mediumlarge.router.navigate("/", true);
       }, 

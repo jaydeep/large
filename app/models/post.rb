@@ -33,9 +33,26 @@ class Post < ActiveRecord::Base
     body.split(' ').count
   end
 
-  def self.recommendedPosts
-    #TODO
-    Post.limit(10).where("publish_status = ?", true);
+  def self.home_page_recommendations 
+    Post.joins(:recommendations).
+    group("recommendations.post_id, posts.id").
+    order('count(recommendations.post_id)')
+  end
+
+  def self.home_page_recommendation_ids
+    home_page_recommendations.pluck(:id)
+  end
+
+  def self.latest_posts
+    order(:created_at).reverse_order.limit(5)
+  end
+
+  def self.latest_post_ids
+    latest_posts.pluck(:id)
+  end
+
+  def self.homePagePosts
+    home_page_recommendations + latest_posts
   end
 
   ##Analytics

@@ -1,14 +1,14 @@
-collection @posts
-attributes :id, :title, :subtitle
+object false
 
-child(:collection, :unless => lambda { |p| p.collection.nil? }) do
-  attributes :name
+node(:recommended_posts) do |p|
+  Post.home_page_recommendation_ids
 end
 
-node(:read_time_estimate) do |p|
-  p.read_time_estimation
+node(:latest_posts) do |p|
+  Post.latest_post_ids
 end
 
-child(:author => :author) do
-  attributes :name, :profile_image
+node(:posts) do
+  partial("posts/posts", :object => @posts)
 end
+

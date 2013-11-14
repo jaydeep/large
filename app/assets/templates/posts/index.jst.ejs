@@ -1,10 +1,22 @@
 <h1>Posts</h1>
 
-All the posts for now, will soon be split into recommended vs latest.
-<br>
-
+<h2>Recommendations:</h2>
 <ul>
-<% posts.forEach(function(post){ %>
+    <% Mediumlarge.recommendations.forEach(function(recommendation){  %>
+      <% var rPost = posts.get(recommendation); %>
+      <img src="<%= rPost.get('author').profile_image %>">
+      <a href="/#/post/<%= rPost.id %>">
+        <b><%= rPost.escape('title') %></b>
+        <em><%= rPost.escape('subtitle') %></em>
+      </a>
+      by <a href="#"><%= rPost.get('author').name %></a>
+    <% }); %>
+</ul>
+
+<h2>Latest:</h2>
+<ul>
+<% Mediumlarge.latestPosts.forEach(function(post_id){ %>
+    <% var post = posts.get(post_id) %>
     <li>
       <img src="<%= post.get('author').profile_image %>">
       <a href="/#/post/<%= post.id %>">

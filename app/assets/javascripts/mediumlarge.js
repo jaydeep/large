@@ -19,7 +19,10 @@ window.Mediumlarge = {
     Mediumlarge.homePagePosts.fetch({
       success: function(data, response){ //on success
         //TODO: add homePagePosts to posts
-        Mediumlarge.posts.reset(response);
+        Mediumlarge.recommendations = response.recommended_posts;
+        Mediumlarge.latestPosts = response.latest_posts;
+        Mediumlarge.posts.reset(response.posts);
+        debugger;
   
         Mediumlarge.collections.fetch({ //start fetching the collections
           success:function(data, response){console.log('collections fetched!')}, 

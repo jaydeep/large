@@ -22,9 +22,9 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   showHomePage: function(){
     console.log('hi from show home page');
     this._swapSidebar({/*pass in the view*/});
-
+    
     var postIndexView = new Mediumlarge.Views.PostsIndex({
-      collection: Mediumlarge.homePagePosts
+      collection: Mediumlarge.posts
     });
 
     this._swapView(postIndexView);
@@ -40,7 +40,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
 
   editPost:function(postId){
     console.log('hi from edit post:' + postId);
-    debugger;
+
     var postToEdit = Mediumlarge.posts.get(postId);
 
     var editPostView = new Mediumlarge.Views.PostEdit({
