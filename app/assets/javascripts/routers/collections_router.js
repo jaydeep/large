@@ -42,6 +42,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
     console.log('hi from edit post:' + postId);
 
     var postToEdit = Mediumlarge.posts.get(postId);
+    debugger; 
 
     var editPostView = new Mediumlarge.Views.PostEdit({
       model : postToEdit
@@ -73,12 +74,12 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
 
   showPost: function(postId){ //not convinced this is necessary
     console.log("hi from post view...i'll be fetching in a moment");
-    var post = new Mediumlarge.Models.Post({ id: postId });
+    //check if post already exists inc collection, else fetch.
+    var post = Mediumlarge.posts.get(postId);
     var that = this;
 
     post.fetch({wait: true, 
       success: function(data, response){
-        Mediumlarge.posts.add(post);
         console.log('yay post was fetched');
         
         var postShowView = new Mediumlarge.Views.PostsShow({

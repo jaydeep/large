@@ -12,11 +12,10 @@ window.Mediumlarge = {
     //fetch the posts and collections. TOOD: how to improve this?
     Mediumlarge.collections = new Mediumlarge.Collections.Collections();
     Mediumlarge.posts = new Mediumlarge.Collections.Posts();
-    Mediumlarge.homePagePosts = new Mediumlarge.Collections.Posts();
     var self = this;
 
     //fetches the top 5 posts, and the latest 5 posts
-    Mediumlarge.homePagePosts.fetch({
+    Mediumlarge.posts.fetch({
       success: function(data, response){ //on success
         //TODO: add homePagePosts to posts
         Mediumlarge.recommendations = response.recommended_posts;
