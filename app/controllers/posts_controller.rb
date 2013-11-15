@@ -16,12 +16,13 @@ class PostsController < ApplicationController
     render "show", handlers: [:rabl]
   end
 
-  def new
-    #this will only be used to send the open collections to the form
-    @post = Post.new #TODO how to handle this guy
-    @collections = Collection.open_collections(current_user)
-    render :json => @collections
-  end
+  #not necessary anymore.
+  # def new
+  #   #this will only be used to send the open collections to the form
+  #   @post = Post.new #TODO how to handle this guy
+  #   @collections = Collection.open_collections(current_user)
+  #   render :json => @collections
+  # end
 
   def create
     #this is still the same.

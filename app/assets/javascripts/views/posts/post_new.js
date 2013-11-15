@@ -34,7 +34,8 @@ Mediumlarge.Views.PostNew = Backbone.View.extend({
     this.post.set({
       title : $("#post-title").val(),
       subtitle: $("#post-subtitle").val(),
-      body : $("#post-body").val()
+      body : $("#post-body").val(),
+      collection_id: $("#post-collection").val()
     });
 
     this.post.save({}, {

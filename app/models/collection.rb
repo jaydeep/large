@@ -30,4 +30,8 @@ class Collection < ActiveRecord::Base
     Collection.where("invite_only = ? OR owner_id = ? OR id IN (?) ", 
       false, user.id, user.invited_collection_ids )
   end
+
+  def is_owner?(user_id)
+    owner_id == user_id
+  end
 end

@@ -5,7 +5,11 @@ Mediumlarge.Models.Collection = Backbone.Model.extend({
     delete data.posts;
     return data;
   },
-  toJSON: function(data){
-    return data;
+  toJSON: function(){
+    return {
+      name : this.get('name'),
+      description: this.get('description'),
+      invite_only : this.get('invite_only')
+    };
   }
 });

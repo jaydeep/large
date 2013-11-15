@@ -1,1 +1,34 @@
-edit.jst.ejs
+<form name="collection-edit" action="/collections/<%= collection_id %>/edit" method="POST">
+<input type="hidden" name="_method" value="PUT">
+
+<input type="text" id="collection-name" name="collection[name]"
+  placeholder="Enter a name." value="<%= name %>">
+
+<input type="text" id="collection-description" name="collection[description]"
+  placeholder="Enter a description" value="<%= description %>">
+
+  <label for="invite-only">Invite Only</label>
+  <input type="radio" 
+    id="invite_only" 
+    name="invite-status" 
+    value="true"
+    <% if (invite_only) { %> 
+      checked
+    <% } %>
+    >
+  <br>
+
+  <label for="anyone">Anyone Can Post!</label>
+  <input 
+    id="anyone"
+    type="radio" 
+    name="invite-status" 
+    value="false" 
+    <% if (!invite_only) { %> 
+      checked
+    <% } %>
+    >
+  <br>
+
+  <button id="edit-collection">Edit Collection</button>
+</form>

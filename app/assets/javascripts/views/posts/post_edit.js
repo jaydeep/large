@@ -27,9 +27,12 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
     var title     = this.model.get('title');
     var subtitle  = this.model.get('subtitle');
     var body      = this.model.get('body');
+    var collection_id = this.model.get('collection_id');
+    var model_id = this.model.id;
     var renderedContent = this.template({
-      id: this.model.id, title : title,
-      subtitle : subtitle, body : body
+      id: model_id, title : title,
+      subtitle : subtitle, body : body,
+      collection_id : collection_id
     });
 
     this.$el.html(renderedContent);
@@ -44,11 +47,13 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
 
   putForm:function(event){
     event.preventDefault();
+    if ( !this.model.get('publish_status') ) {
+      this.model.set({
+        publish_status: true,
+        created_at: this.displayTime()
+      });
+    }
 
-    this.model.set({
-      publish_status: true,
-      created_at: this.displayTime()
-    });
     this.saveForm();
   },
 
@@ -56,15 +61,14 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
     this.model.set({
       title : $("#post-title").val(),
       subtitle: $("#post-subtitle").val(),
-      body : $("#post-body").val()
+      body : $("#post-body").val(),
+      collection_id : $("#post-collection").val()
     });
 
     var self = this;
 
     this.model.save({}, {
       success:function(data, response){
-        Mediumlarge.posts.set(response);
-
         //navigates successfully, TODO: but this makes an extra request.
         Mediumlarge.router.navigate('/post/'+self.model.id, true); 
       },

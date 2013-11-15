@@ -10,14 +10,33 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   routes: {
     "": "showHomePage",
     "collections": "showCollectionsIndex",
-    // "collection/new" :"newCollection",
-    // "collections/:collectionId/edit" :"editCollection",
+    "collections/new" :"newCollection",
+    "collections/:collectionId/edit" :"editCollection",
     "collections/:collectionId": "showCollectionView",
     "collections/:collectionId/:postId": "showPostFromCollection",
     "post/new": "newPost",
     "post/:postId": "showPost",
     "post/:postId/edit": "editPost"
   }, 
+
+  editCollection:function(collectionId){
+    console.log('hi from edit collection');
+    var collectionToEdit = Mediumlarge.collections.get(collectionId);
+
+    var editCollectionView = new Mediumlarge.Views.CollectionEdit({
+      model : collectionToEdit
+    })
+
+    this._swapView(editCollectionView);
+  },
+
+  newCollection:function(){
+    console.log('hi from new collection');
+    
+    var newCollectionView = new Mediumlarge.Views.CollectionNew();
+
+    this._swapView(newCollectionView);
+  },
 
   showHomePage: function(){
     console.log('hi from show home page');
@@ -40,9 +59,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
 
   editPost:function(postId){
     console.log('hi from edit post:' + postId);
-
-    var postToEdit = Mediumlarge.posts.get(postId);
-    debugger; 
+    var postToEdit = Mediumlarge.posts.get(postId); 
 
     var editPostView = new Mediumlarge.Views.PostEdit({
       model : postToEdit
@@ -64,7 +81,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   showCollectionView: function(collectionId){
     console.log("hi from collection view");
     var collectionToShow = Mediumlarge.collections.get(collectionId);
-
+    
     var collectionShowView = new Mediumlarge.Views.CollectionsShow({
       model: collectionToShow
     });
@@ -103,7 +120,11 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
   
   _swapSidebar: function(newSidebar){
     //TEMP. TODO
-    this.$sidebar.html("<h1>Sidebar</h1><a href='/#'>Home</a><br><a href='/#/post/new'>New Post</a><br><a href='/#/collections'>Collection View</a>");
+    this.$sidebar.html("<h1>Sidebar</h1>");
+    this.$sidebar.append("<a href='/#'>Home</a><br>");
+    this.$sidebar.append("<a href='/#/post/new'>New Post</a><br>");
+    this.$sidebar.append("<a href='/#/collections/new'>New Collection</a><br>");
+    this.$sidebar.append("<a href='/#/collections'>Collection View</a>");
 
     // if (this._prevSidebar){
     //   this._prevSidebar.remove();

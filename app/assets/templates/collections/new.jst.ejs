@@ -1,0 +1,27 @@
+<form name="collection-new" action="/collections" method="POST">
+<input type="text" id="collection-name"
+  name="collection[name]" placeholder="Enter a name.">
+
+<input type="text" id="collection-description"
+  name="collection[description]" placeholder="Enter a description">
+
+  <label for="invite-only">Invite Only</label>
+  <input type="radio" 
+    id="invite_only" 
+    name="collection[invite_only]" 
+    value="true"
+    >
+  <br>
+
+  <label for="anyone">Anyone Can Post!</label>
+  <input 
+    id="anyone"
+    type="radio" 
+    name="collection[invite_only]" 
+    value="false"
+    checked
+    >
+  <br>
+
+  <button id="new-collection">New Collection</button>
+</form>

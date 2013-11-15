@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   before_filter :require_logged_in_user!, except: [:show]
+  
   def index
     @collections = Collection.all
     @current_user_id = current_user.id
@@ -8,6 +9,7 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
+    @current_user_id = current_user.id
     render "show", handlers: [:rabl]
   end
 
@@ -16,7 +18,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(params[:collection])
     @collection.owner_id = current_user.id
     if @collection.save
-      render :json => @collection
+      render "show", handlers: [:rabl]
     else
       render :json => @collection.errors.full_messages, status: 422
     end
@@ -33,8 +35,7 @@ class CollectionsController < ApplicationController
   def update
     begin
       @collection = Collection.find(params[:id])
-      binding.pry
-      if @collection.invite_only && params[:invitations][:user_ids]
+      if params[:collection][:invite_only] && params[:invitations]
         @collection.invited_user_ids = params[:invitations][:user_ids] 
       end
       @collection.assign_attributes(params[:collection])

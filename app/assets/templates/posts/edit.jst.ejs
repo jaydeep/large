@@ -7,8 +7,20 @@
     placeholder="Enter a subtitle" value="<%= subtitle %>">
 
   <label for="collection">Choose a collection</label>
-  <select id="collection" name="post[collection_id]">
+  <select id="post-collection" name="post[collection_id]">
     <option value="">No Collection</option>
+
+    <% Mediumlarge.collections.forEach(function(collection){ %>
+        <% if (collection.id == collection_id ) { %>
+          <option value="<%= collection.id %>" selected>
+            <%= collection.escape('name') %>
+          </option>
+        <% } else { %>
+          <option value="<%= collection.id %>">
+            <%= collection.escape('name') %>
+          </option>
+        <% } %>
+    <% }); %>
   </select><br>
 
   <textarea 

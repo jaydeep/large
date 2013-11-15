@@ -2,7 +2,10 @@ Mediumlarge.Views.CollectionsShow = Backbone.View.extend({
   template: JST['collections/show'], 
 
   render : function(){
-    var collectionsPosts = this.model.posts.models;
+    var collectionsPosts = false;
+    if (this.model.posts.length > 0) 
+      collectionsPosts = this.model.posts.models;
+
     var renderedContent = this.template({
       collection : this.model,
       posts : collectionsPosts
