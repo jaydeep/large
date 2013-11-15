@@ -16,7 +16,10 @@
 <h2>Latest:</h2>
 <ul>
 
-<% for(var i=0; i < 5; i++) { %>
+<% var numPostsToDisplay = Mediumlarge.latestPosts.length; %>
+<%  if (numPostsToDisplay > 5) numPostsToDisplay = 5; %>
+
+<% for(var i=0; i < numPostsToDisplay; i++) { %>
     <% var post_id = Mediumlarge.latestPosts[i] %>
     <% var post = posts.get(post_id) %>
 

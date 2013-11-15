@@ -26,7 +26,6 @@ Mediumlarge.Views.PostsShow = Backbone.View.extend({
       success:function(data,response){
         self.updateArrays(self.model.id);
         console.log('deleted');
-        debugger;
         Mediumlarge.router.navigate("/", true);
       }, 
       error:function(data,response){
