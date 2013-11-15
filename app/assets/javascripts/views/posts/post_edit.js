@@ -4,6 +4,7 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
     "click #publish" : "putForm",
     "click #draft": "makeDraft"
   },
+  
   displayTime: function() {
     var str = "";
 
