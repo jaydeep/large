@@ -22,7 +22,6 @@ window.Mediumlarge = {
         Mediumlarge.recommendations = response.recommended_posts;
         Mediumlarge.latestPosts = response.latest_posts;
         Mediumlarge.posts.reset(response.posts);
-        debugger;
   
         Mediumlarge.collections.fetch({ //start fetching the collections
           success:function(data, response){console.log('collections fetched!')}, 

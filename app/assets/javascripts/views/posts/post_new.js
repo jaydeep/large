@@ -39,6 +39,7 @@ Mediumlarge.Views.PostNew = Backbone.View.extend({
 
     this.post.save({}, {
       success:function(data, response){
+        Mediumlarge.latestPosts.unshift(response.id);
         Mediumlarge.posts.add(response);
 
         console.log('successfully posted');

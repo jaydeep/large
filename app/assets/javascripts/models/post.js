@@ -8,7 +8,8 @@ Mediumlarge.Models.Post = Backbone.Model.extend({
         title : this.get('title'),
         subtitle : this.get('subtitle'),
         body: this.get('body'), 
-        publish_status : this.get('publish_status')
+        publish_status : this.get('publish_status'), 
+        created_at: this.get('created_at')
     }
   }
 });

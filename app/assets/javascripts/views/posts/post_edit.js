@@ -4,6 +4,23 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
     "click #publish" : "putForm",
     "click #draft": "makeDraft"
   },
+  displayTime: function() {
+    var str = "";
+
+    var currentTime = new Date()
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+    var seconds = currentTime.getSeconds()
+
+    if (minutes < 10) {
+        minutes = "0" + minutes
+    }
+    if (seconds < 10) {
+        seconds = "0" + seconds
+    }
+    str += hours + ":" + minutes + ":" + seconds + " ";
+    return str;
+  },
 
   render: function(){
     var title     = this.model.get('title');
@@ -26,7 +43,11 @@ Mediumlarge.Views.PostEdit = Backbone.View.extend({
 
   putForm:function(event){
     event.preventDefault();
-    this.model.set({publist_status: true});
+
+    this.model.set({
+      publish_status: true,
+      created_at: this.displayTime()
+    });
     this.saveForm();
   },
 

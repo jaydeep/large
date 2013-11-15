@@ -34,7 +34,8 @@ class Post < ActiveRecord::Base
   end
 
   def self.home_page_recommendations 
-    Post.joins(:recommendations).
+    Post.where("publish_status = ?", true).
+    joins(:recommendations).
     group("recommendations.post_id, posts.id").
     order('count(recommendations.post_id)')
   end
@@ -44,6 +45,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.latest_posts
+    Post.where("publish_status = ?", true).
     order(:created_at).reverse_order.limit(5)
   end
 

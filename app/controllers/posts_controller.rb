@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
     if @post.save
-      render :json => @post
+      render "show", handlers: [:rabl]
     else
       render :json => @post.errors.full_messages, status: 422
     end
@@ -44,6 +44,7 @@ class PostsController < ApplicationController
   def update 
     #this works largely the same, 
     @post = Post.find(params[:id])
+    @post.created_at = params[:created_at] if !!params[:created_at]
     if @post.update_attributes(params[:post])
       render "show", handlers: [:rabl]
     else
