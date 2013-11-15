@@ -5,7 +5,6 @@ Mediumlarge.Views.CollectionEdit = Backbone.View.extend({
   },
 
   render: function(){
-    debugger;
     var name            = this.model.get('name');
     var description     = this.model.get('description');
     var invite_only     = this.model.get('invite_only');
