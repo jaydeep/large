@@ -24,13 +24,13 @@ class CollectionsController < ApplicationController
     end
   end
 
-  def edit #TODO fix this
-    #figure out what the best way to do this would be. 
-    @collection = Collection.find(params[:id])
-    @users = User.all #change this to invitable users
-    @invited_user_ids = @collection.invited_user_ids if @collection.invite_only
-    render :json => @users
-  end
+  # def edit #TODO fix this
+  #   #figure out what the best way to do this would be. 
+  #   @collection = Collection.find(params[:id])
+  #   @users = User.all #change this to invitable users
+  #   @invited_user_ids = @collection.invited_user_ids if @collection.invite_only
+  #   render :json => @users
+  # end
 
   def update
     begin
