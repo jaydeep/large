@@ -44,7 +44,7 @@ class CollectionsController < ApplicationController
         @collection.save!
       end
 
-      render :json => @collection
+      render "show", handlers: [:rabl]
     
     rescue ActiveRecord::RecordInvalid => invalid
       render :json => @collection.errors.full_messages, status: 422
