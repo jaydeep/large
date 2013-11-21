@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require backbone.marionette
 //= require mediumlarge
 //= require_tree ../templates
 //= require_tree ./models
