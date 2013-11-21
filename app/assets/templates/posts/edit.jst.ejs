@@ -1,10 +1,24 @@
 <form name="post-form-edit" action="/posts/<%= id %>" method="POST">
   <input type="hidden" name="_method" value="PUT">
 
-  <input type="text" id="post-title" name="post[title]" 
-    placeholder="Enter a title..." value="<%= title %>">
-  <input type="text" id="post-subtitle" name="post[subtitle]"
-    placeholder="Enter a subtitle" value="<%= subtitle %>">
+  <input class="title"
+    type="text"
+    id="post-title" 
+    name="post[title]" 
+    placeholder="Enter a title..." value="<%= title %>"><br>
+
+  <input 
+    class="subtitle"
+    type="text"
+    id="post-subtitle"
+    name="post[subtitle]"
+    placeholder="Enter a subtitle" value="<%= subtitle %>"><br>
+
+  <textarea 
+    rows="30" cols="100" id="post-body"
+    name="post[body]" placeholder="Content goes here." value="hello.">
+    <%= body %></textarea>
+  <br>
 
   <label for="collection">Choose a collection</label>
   <select id="post-collection" name="post[collection_id]">
@@ -23,13 +37,6 @@
     <% }); %>
   </select><br>
 
-  <textarea 
-    rows="50" cols="100" id="post-body"
-    name="post[body]" placeholder="Content goes here." value="hello.">
-    <%= body %>
-  </textarea>
-  <br>
-
-  <button id="draft">Save as Draft.</button>
-  <button id="publish">Publish post.</button>
+  <button class="btn btn-default" id="draft">Save as Draft.</button>
+  <button class="btn btn-success" id="publish">Publish post.</button>
 </form>

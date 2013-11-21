@@ -1,9 +1,21 @@
 <form name="post-form-new" action="/posts/new" method="POST">
 
-  <input type="text" id="post-title" name="post[title]" placeholder="Enter a title...">
-  <input type="text" id="post-subtitle" name="post[subtitle]" placeholder="Enter a subtitle">
+  <input class="title" 
+    type="text" id="post-title" 
+    name="post[title]" 
+    placeholder="Enter a title..."><br>
 
-  <label for="post-collection">Choose a collection</label>
+  <input class="subtitle"
+    type="text" id="post-subtitle"
+    name="post[subtitle]"
+    placeholder="Enter a subtitle"><br>
+
+  <textarea class="content"
+    rows="30" cols="100" id="post-body"
+    name="post[body]" placeholder="Content goes here."></textarea>
+  <br>
+
+  <label for="post-collection">Choose a collection. Display on click of publish.</label>
   <select id="post-collection" name="post[collection_id]">
     <option value="">No Collection</option>
     <% Mediumlarge.collections.forEach(function(collection){ %>
@@ -13,12 +25,6 @@
     <% }); %>
   </select><br>
 
-  <textarea 
-    rows="50" cols="100" id="post-body"
-    name="post[body]" placeholder="Content goes here.">
-  </textarea>
-  <br>
-
-  <button id="draft">Save as Draft.</button>
-  <button id="publish">Publish post.</button>
+  <button class="btn btn-default" id="draft">Save as Draft.</button>
+  <button class="btn btn-success" id="publish">Publish post.</button>
 </form>

@@ -10,23 +10,35 @@ html, body{
 //   float: left;
 // }
 
-#content{
-  height: 100%;
-  padding-left: 15px;
-  margin-left: 220px;
-}
-
-#sidebar{
-  width: 200px;
-  height: 100%;
-  float: left;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-right: 5px solid black;
-}
-
 h1 {
   margin: 0px;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+h2 {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+input, textarea {
+  border: none;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+
+
+.title, {
+  font-size: 4em;
+}
+
+.subtitle {
+  font-size: 2em;
+}
+
+.content {
+
 }

@@ -1,11 +1,13 @@
 <form name="collection-edit" action="/collections/<%= collection_id %>/edit" method="POST">
-<input type="hidden" name="_method" value="PUT">
+
+<input
+  type="hidden" name="_method" value="PUT">
 
 <input type="text" id="collection-name" name="collection[name]"
-  placeholder="Enter a name." value="<%= name %>">
+  placeholder="Enter a name." value="<%= name %>"><br>
 
 <input type="text" id="collection-description" name="collection[description]"
-  placeholder="Enter a description" value="<%= description %>">
+  placeholder="Enter a description" value="<%= description %>"><br>
 
   <label for="invite-only">Invite Only</label>
   <input type="radio" 
@@ -16,7 +18,6 @@
       checked
     <% } %>
     >
-  <br>
 
   <label for="anyone">Anyone Can Post!</label>
   <input 

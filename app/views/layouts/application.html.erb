@@ -8,22 +8,22 @@
 </head>
 <body>
 
-<div id="user-nav">
+<div id="user-nav" class="col-md-2">
    <% if current_user %>
-    Welcome, <%= current_user.name %>!
+    Welcome, <%= current_user.name %>!<br>
     <%= link_to "Sign out!", session_url, method: :delete %>
   <% else %>
     <%= link_to "Sign In With Twitter", "/auth/twitter" %>
   <% end %>
 </div>
 
-<div id="sidebar">
+<div id="sidebar" class="col-md-2">
   <%= link_to "Home-Posts", "/" %>
   <%= link_to "Posts JSON", posts_url %>
   <%= link_to "Collections JSON", collections_url %>
   <a href="/#/collections">Collection View</a>
 </div>
-<div id="content">
+<div id="content" class="col-md-8">
   <h1>Content</h1>
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, id: "flash_#{name}" %>

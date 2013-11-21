@@ -1,12 +1,12 @@
 <h1><%= collection.escape('name') %></h1>
-<h2><%= collection.escape('description') %></h2>
+<p><%= collection.escape('description') %></p>
 
 <% if (posts) { %>
   <h3>All the posts!</h3>
   <ul class="posts">
     <% posts.forEach(function(post){ %> 
       <li>
-        <a href="/#/collections/<%= collection.id %>/<%= post.id %>"><%= post.escape('title') %></a> by <img src="<%= post.get('author').profile_image %>"> <%= post.get('author').name %>
+        <a href="/#/collections/<%= collection.id %>/<%= post.id %>"><%= post.escape('title') %></a> by <img src="<%= post.get('author').profile_image %>" class="img-circle"> <%= post.get('author').name %>
       </li>
     <% }); %>
   </ul>

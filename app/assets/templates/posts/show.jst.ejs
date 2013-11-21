@@ -3,7 +3,7 @@
 <h3>Body: <%= post.escape('body') %> </h3>
 
 Post written by: <%= post.get('author').name %>
-<img src="<%= post.get('author').profile_image %>">
+<img src="<%= post.get('author').profile_image %>" class="img-circle">
 
 <% if (post.get('author').is_current_user) { %>
   <button type="button" id="post-edit">Edit Post</button>

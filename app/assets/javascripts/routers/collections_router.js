@@ -19,6 +19,15 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
     "post/:postId/edit": "editPost"
   }, 
 
+  newCollection:function(){
+    console.log('hi from new collection');
+    
+    var newCollectionView = new Mediumlarge.Views.CollectionNew();
+
+    this._swapView(newCollectionView);
+    $("#collection-name").focus();
+  },
+
   editCollection:function(collectionId){
     console.log('hi from edit collection');
     var collectionToEdit = Mediumlarge.collections.get(collectionId);
@@ -28,14 +37,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
     })
 
     this._swapView(editCollectionView);
-  },
-
-  newCollection:function(){
-    console.log('hi from new collection');
-    
-    var newCollectionView = new Mediumlarge.Views.CollectionNew();
-
-    this._swapView(newCollectionView);
+    $("#collection-name").focus();
   },
 
   showHomePage: function(){
@@ -55,6 +57,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
     });
 
     this._swapView(newPostView);
+    $("#post-title").focus();
   },
 
   editPost:function(postId){
@@ -66,6 +69,7 @@ Mediumlarge.Routers.Collections = Backbone.Router.extend({
     });
 
     this._swapView(editPostView);
+    $("#post-body").focus();
   },
 
   showCollectionsIndex: function(){
