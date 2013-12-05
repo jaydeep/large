@@ -1,5 +1,5 @@
-##Hey there.
+##A Medium.com Clone.
 
-This README is a work in progress. 
+Inspired by the beautiful design and interface, I decided to take on this project. 
 
-Check back on 11/14 for the project when it should, hopefully be done.
+A semi-working version of this app can be seen at large.herokuapp.com.
